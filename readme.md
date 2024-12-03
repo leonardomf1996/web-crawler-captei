@@ -29,20 +29,20 @@ cd web-crawler-captei
 npm install
 ```
 
-### 3. Configurar o Prisma
-
-Sincronize o esquema do banco de dados com PostgreSQL usando Prisma:
-
-```bash
-npx prisma migrate dev --name init
-```
-
-### 4. Iniciar os serviços com Docker
+### 3. Iniciar os serviços com Docker
 
 Suba o PostgreSQL e o Elasticsearch usando Docker Compose:
 
 ```bash
 docker-compose up -d
+```
+
+### 4. Configurar o Prisma
+
+Sincronize o esquema do banco de dados com PostgreSQL usando Prisma:
+
+```bash
+npx prisma migrate dev --name init
 ```
 
 ### 5. Executar o crawler

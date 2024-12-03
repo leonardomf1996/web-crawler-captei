@@ -68,7 +68,7 @@ async function fetchRealEstateData(): Promise<Property[]> {
 }
 
 async function insertIntoElasticsearch(data: Property) {
-   try {      
+   try {
       await client.index({
          index: 'imoveis',
          document: data,
@@ -102,7 +102,8 @@ async function startCrawler() {
    try {
       const realEstateData = await fetchRealEstateData();
       for (const property of realEstateData) {
-         await insertIntoElasticsearch(property);
+         console.log(property)
+         // await insertIntoElasticsearch(property);
       }
 
       await prisma.captura.update({
