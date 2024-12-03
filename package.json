@@ -1,0 +1,29 @@
+{
+  "name": "web-crawler-captei",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node src/crawler.ts",
+    "build": "tsc",
+    "run-build": "node dist/crawler.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@elastic/elasticsearch": "^8.16.2",
+    "@prisma/client": "^4.9.0",
+    "axios": "^1.7.8",
+    "cheerio": "^1.0.0",
+    "pg": "^8.13.1",
+    "uuid": "^11.0.3"
+  },
+  "devDependencies": {
+    "@types/cheerio": "^0.22.35",
+    "@types/node": "^22.10.1",
+    "prisma": "^4.9.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
+  }
+}

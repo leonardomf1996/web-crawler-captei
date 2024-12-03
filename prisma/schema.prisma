@@ -1,0 +1,29 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Portal {
+  id          Int       @id @default(autoincrement())
+  nome        String
+  url         String
+  observacoes String?
+  capturas    Captura[]
+}
+
+model Captura {
+  id             Int      @id @default(autoincrement())
+  portalId       Int
+  filtros        Json?
+  status         String
+  dataHoraInicio DateTime
+  dataHoraFim    DateTime
+  portal         Portal   @relation(fields: [portalId], references: [id])
+}

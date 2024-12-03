@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:14
+    container_name: postgres_crawler
+    environment:
+      POSTGRES_USER: crawler_user
+      POSTGRES_PASSWORD: crawler_pass
+      POSTGRES_DB: crawler_db
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.5.0
+    container_name: elasticsearch_crawler
+    environment:
+      - discovery.type=single-node
+    ports:
+      - '9200:9200'  # Expõe a porta do Elasticsearch
+    networks:
+      - crawler_network
+
+networks:
+  crawler_network:
+    driver: bridge
+
+volumes:
+  postgres_data:
