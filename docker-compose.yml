@@ -1,5 +1,18 @@
-version: '3.8'
+version: '3'
 services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.10.0
+    container_name: elasticsearch_crawler
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+    ports:
+      - "9200:9200"
+    networks:
+      - crawler_network
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+
   postgres:
     image: postgres:14
     container_name: postgres_crawler
@@ -11,14 +24,6 @@ services:
       - '5432:5432'
     volumes:
       - postgres_data:/var/lib/postgresql/data
-
-  elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:8.5.0
-    container_name: elasticsearch_crawler
-    environment:
-      - discovery.type=single-node
-    ports:
-      - '9200:9200'  # Expõe a porta do Elasticsearch
     networks:
       - crawler_network
 
@@ -28,3 +33,4 @@ networks:
 
 volumes:
   postgres_data:
+  elasticsearch_data:

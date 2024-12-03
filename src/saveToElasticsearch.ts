@@ -1,4 +1,4 @@
-import { esClient } from './elasticsearchClient';
+import { client } from './elasticsearchClient';
 
 interface Imovel {
    id: string;
@@ -23,6 +23,6 @@ export async function saveToElasticsearch(imoveis: Imovel[]) {
       imovel,
    ]);
 
-   await esClient.bulk({ refresh: true, body });
+   await client.bulk({ refresh: true, body });
    console.log('Dados inseridos no Elasticsearch com sucesso!');
 }

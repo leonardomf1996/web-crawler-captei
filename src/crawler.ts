@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import * as cheerio from 'cheerio';
 import axios from 'axios';
-import { esClient } from './elasticsearchClient';
+import { client } from './elasticsearchClient';
 
 const prisma = new PrismaClient();
 
@@ -58,9 +58,6 @@ async function fetchRealEstateData(): Promise<Property[]> {
             capturadoEm: new Date().toISOString(),
          }
 
-         console.log('data')
-         console.log(data)
-
          properties.push(data);
       });
    } catch (error) {
@@ -72,7 +69,7 @@ async function fetchRealEstateData(): Promise<Property[]> {
 
 async function insertIntoElasticsearch(data: Property) {
    try {      
-      await esClient.index({
+      await client.index({
          index: 'imoveis',
          document: data,
       });

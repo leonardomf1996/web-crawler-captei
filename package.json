@@ -4,9 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node src/crawler.ts",
-    "build": "tsc",
-    "run-build": "node dist/crawler.js"
+    "start": "ts-node src/crawler.ts"
   },
   "keywords": [],
   "author": "",
